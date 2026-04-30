@@ -12,19 +12,18 @@ import {
 const Footer = () => {
   return (
     <footer className="relative mt-24 bg-[#2A3C50] text-white">
-      {/* Decorative Border */}
       <div className="h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-      {/* Subtle Gradient Glow */}
+     
       <div
         className="absolute inset-0 -z-10 bg-linear-to-tr 
         from-purple-500/5 via-transparent to-blue-500/5 
         dark:from-purple-500/10 dark:to-blue-500/10 blur-3xl"
       />
 
-      {/* Content */}
+      
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        {/* Main Sections */}
+        
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 md:gap-8">
           {/* Brand */}
           <div className="flex-1 max-w-sm space-y-4">
@@ -39,9 +38,9 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social Links Block */}
+          
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-white tracking-wider ">
               Social Links
             </h3>
             <div className="flex items-center gap-5 text-lg text-gray-400">
@@ -76,9 +75,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Us Block */}
+          
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-white tracking-wider ">
               Contact Us
             </h3>
             <ul className="space-y-3 text-sm text-gray-400">
@@ -95,7 +94,7 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <FaEnvelope className="text-[#38BDF8] flex-shrink-0" />
                 <a href="mailto:support@pixgen.com" className="hover:text-white transition-colors">
-                  support@pixgen.com
+                  support@tilesgallery.com
                 </a>
               </li>
             </ul>
@@ -105,7 +104,7 @@ const Footer = () => {
         {/* Divider */}
         <div className="mt-12 h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Bottom Section */}
+        
         <div className="mt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
           <p>© {new Date().getFullYear()} TilesGallery. All rights reserved.</p>
 

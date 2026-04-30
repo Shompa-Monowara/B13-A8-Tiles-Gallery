@@ -15,17 +15,17 @@ const Navbar = () => {
        
         <ul className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wider">
           <li>
-            <Link href={"/"} className="hover:text-gray-300 transition-colors uppercase">
+            <Link href={"/"} className="hover:text-gray-300 transition-colors ">
               Home
             </Link>
           </li>
           <li>
-            <Link href={"/all-tiles"} className="hover:text-gray-300 transition-colors uppercase">
+            <Link href={"/all-tiles"} className="hover:text-gray-300 transition-colors ">
               All Tiles
             </Link>
           </li>
           <li>
-            <Link href={"/my-profile"} className="hover:text-gray-300 transition-colors uppercase">
+            <Link href={"/my-profile"} className="hover:text-gray-300 transition-colors ">
               My Profile
             </Link>
           </li>
@@ -33,13 +33,13 @@ const Navbar = () => {
 
         
         <div className="flex items-center gap-6 text-sm font-semibold tracking-wider pr-2 md:pr-0">
-          <Link href={"/signin"} className="hover:text-gray-300 transition-colors uppercase">
+          <Link href={"/signin"} className="hover:text-gray-300 transition-colors ">
             SignIn
           </Link>
           
           <Link 
             href={"/signup"} 
-            className="border border-white/30 hover:bg-white hover:text-[#3F3B36] px-5 py-2 rounded-sm transition-all duration-300 uppercase"
+            className="border border-white/30 hover:bg-white hover:text-[#3F3B36] px-5 py-2 rounded-sm transition-all duration-300 "
           >
             SignUp
           </Link>
