@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const poppinsfont = Poppins({
   subsets: ["latin"],
@@ -21,7 +22,8 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         
-        <main className="w-full min-h-screen">{children}</main>
+        <main >{children}</main>
+        <Footer/>
       </body>
     </html>
   );
