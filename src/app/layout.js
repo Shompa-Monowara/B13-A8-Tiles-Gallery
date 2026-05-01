@@ -16,10 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
-      className={`${poppinsfont.className} h-full antialiased`}
+      lang="en" data-theme="light" 
+       className={`h-full antialiased`}
     >
-      <body >
+      <body className={`$poppinsfont.className} min-h-full flex flex-col`}>
         <Navbar />
         
         <main >{children}</main>

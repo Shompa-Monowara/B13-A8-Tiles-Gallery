@@ -1,9 +1,11 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function SignUpPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,14 +34,14 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex justify-center items-center content-center min-h-screen   w-full  bg-slate-950 px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
+    <div className="flex justify-center items-center min-h-screen w-full bg-slate-950 px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
       <div className="w-full max-w-md p-8 md:p-10 bg-slate-900/60 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.4)] border border-[#38BDF8]/20 rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-white">
             Create Account
           </h1>
           <p className="text-sm text-slate-400 font-light">
-            Welcome back! Please enter your details.
+            Welcome! Please enter your details.
           </p>
         </div>
 
@@ -98,7 +100,7 @@ export default function SignUpPage() {
             <button
               type="button"
               onClick={toggleVisibility}
-              className="absolute right-3 top-[40px] transform -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+              className="absolute right-3 top-[38px] transform -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
               aria-label="toggle password visibility"
             >
               {isVisible ? (
@@ -177,6 +179,13 @@ export default function SignUpPage() {
             </button>
           </div>
         </form>
+
+        <p className="text-center text-sm text-slate-400 mt-6">
+          Already have an account?{" "}
+          <Link href="/login" className="text-[#38BDF8] font-bold hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
