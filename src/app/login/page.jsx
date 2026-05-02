@@ -65,7 +65,7 @@ export default function LogInPage() {
     });
 
     if (googleError) {
-      setError(googleError.message || "Failed to log in with Google.");
+      setError(googleError.message || "Failed to login with Google.");
     }
   };
 
@@ -84,7 +84,7 @@ export default function LogInPage() {
       <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Log In
+            Sign In
           </h1>
           <p className="text-sm text-gray-500 font-light">
             Welcome back! Please enter your details.
@@ -178,7 +178,7 @@ export default function LogInPage() {
           <svg className="w-4 h-4 text-red-900" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.28-5.28 5.27 5.27 0 0 1 5.28-5.28c1.246 0 2.364.444 3.251 1.171l2.583-2.583A8.706 8.706 0 0 0 11.956 3C7.016 3 3 7.016 3 11.956c0 4.94 4.016 8.956 8.956 8.956 4.672 0 8.57-3.374 8.927-7.798v-2.758z" />
           </svg>
-          Sign In With Google
+          login With Google
         </button>
 
         <p className="text-center text-sm text-gray-500 mt-6">

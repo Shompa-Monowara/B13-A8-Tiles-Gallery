@@ -29,65 +29,70 @@ export default function RegisterPage() {
     console.log({ data, error });
 
     if (!error) {
-      router.push("/");
+      // ১. তৈরি হওয়া সেশনটি বাতিল করুন
+      await authClient.signOut();
+      
+      // ২. এরপর লগইন পেজে রিডাইরেক্ট করুন
+      router.push("/login");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-slate-950 px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
-      <div className="w-full max-w-md p-8 md:p-10 bg-slate-900/60 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.4)] border border-[#38BDF8]/20 rounded-3xl">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] w-full bg-white px-4 py-8 sm:py-12 font-[var(--font-poppins, 'inherit')]">
+      {/* Create Account Form */}
+      <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Create Account
           </h1>
-          <p className="text-sm text-slate-400 font-light">
+          <p className="text-sm text-gray-500 font-light">
             Welcome! Please enter your details.
           </p>
         </div>
 
         <form className="flex flex-col gap-5" onSubmit={onSubmit}>
           <div className="flex flex-col gap-1.5">
-            <label className="text-slate-200 text-sm font-medium pb-1">
-              Name <span className="text-[#38BDF8] text-xs">*</span>
+            <label className="text-gray-700 text-sm font-medium pb-1">
+              Name <span className="text-red-900 text-xs">*</span>
             </label>
             <input
               required
               name="name"
               type="text"
               placeholder="Enter your name"
-              className="h-11 w-full px-4 rounded-xl bg-slate-950 hover:bg-slate-950/80 focus:bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/40 transition-all"
+              className="h-11 w-full px-4 rounded-xl bg-gray-50 hover:bg-gray-100 focus:bg-white border border-gray-300 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-900/40 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-slate-200 text-sm font-medium pb-1">
-              Image URL <span className="text-[#38BDF8] text-xs">*</span>
+            <label className="text-gray-700 text-sm font-medium pb-1">
+              Image URL <span className="text-red-900 text-xs">*</span>
             </label>
             <input
               required
               name="image"
               type="text"
               placeholder="Image URL"
-              className="h-11 w-full px-4 rounded-xl bg-slate-950 hover:bg-slate-950/80 focus:bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/40 transition-all"
+              className="h-11 w-full px-4 rounded-xl bg-gray-50 hover:bg-gray-100 focus:bg-white border border-gray-300 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-900/40 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-slate-200 text-sm font-medium pb-1">
-              Email <span className="text-[#38BDF8] text-xs">*</span>
+            <label className="text-gray-700 text-sm font-medium pb-1">
+              Email <span className="text-red-900 text-xs">*</span>
             </label>
             <input
               required
               name="email"
               type="email"
               placeholder="john@example.com"
-              className="h-11 w-full px-4 rounded-xl bg-slate-950 hover:bg-slate-950/80 focus:bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/40 transition-all"
+              className="h-11 w-full px-4 rounded-xl bg-gray-50 hover:bg-gray-100 focus:bg-white border border-gray-300 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-900/40 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-1.5 relative">
-            <label className="text-slate-200 text-sm font-medium pb-1">
-              Password <span className="text-[#38BDF8] text-xs">*</span>
+            <label className="text-gray-700 text-sm font-medium pb-1">
+              Password <span className="text-red-900 text-xs">*</span>
             </label>
             <input
               required
@@ -95,12 +100,12 @@ export default function RegisterPage() {
               type={isVisible ? "text" : "password"}
               placeholder="Enter your password"
               minLength={8}
-              className="h-11 w-full px-4 pr-12 rounded-xl bg-slate-950 hover:bg-slate-950/80 focus:bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/40 transition-all"
+              className="h-11 w-full px-4 pr-12 rounded-xl bg-gray-50 hover:bg-gray-100 focus:bg-white border border-gray-300 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-900/40 transition-all"
             />
             <button
               type="button"
               onClick={toggleVisibility}
-              className="absolute right-3 top-[38px] transform -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+              className="absolute right-3 top-[38px] transform -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-1"
               aria-label="toggle password visibility"
             >
               {isVisible ? (
@@ -145,7 +150,7 @@ export default function RegisterPage() {
                 </svg>
               )}
             </button>
-            <span className="text-xs text-slate-500 mt-1">
+            <span className="text-xs text-gray-400 mt-1">
               Must be at least 8 characters with 1 uppercase and 1 number
             </span>
           </div>
@@ -153,7 +158,7 @@ export default function RegisterPage() {
           <div className="flex gap-3 mt-3">
             <button
               type="submit"
-              className="flex-1 font-semibold rounded-xl h-11 bg-[#38BDF8] text-slate-950 shadow-[0_4px_14px_0_rgba(56,189,248,0.4)] hover:bg-[#38BDF8]/90 transition-all duration-200 flex items-center justify-center gap-2"
+              className="flex-1 font-semibold rounded-xl h-11 bg-red-900 text-white shadow-sm hover:bg-red-950 transition-all duration-200 flex items-center justify-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +166,7 @@ export default function RegisterPage() {
                 viewBox="0 0 24 24"
                 strokeWidth={2.5}
                 stroke="currentColor"
-                className="w-4 h-4 text-slate-950"
+                className="w-4 h-4 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -173,16 +178,16 @@ export default function RegisterPage() {
             </button>
             <button
               type="reset"
-              className="flex-1 font-semibold rounded-xl h-11 bg-slate-950/40 border border-slate-800 text-slate-300 hover:bg-slate-950/60 transition-all duration-200"
+              className="flex-1 font-semibold rounded-xl h-11 bg-gray-100 border border-gray-300 text-gray-700 hover:bg-gray-200 transition-all duration-200"
             >
               Reset
             </button>
           </div>
         </form>
 
-        <p className="text-center text-sm text-slate-400 mt-6">
+        <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-[#38BDF8] font-bold hover:underline">
+          <Link href="/login" className="text-red-900 font-bold hover:underline">
             Login
           </Link>
         </p>
