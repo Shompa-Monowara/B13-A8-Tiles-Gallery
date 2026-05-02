@@ -66,7 +66,7 @@ const Banner = () => {
                 backgroundImage: `url('${slide.image}')`,
               }}
             >
-              {/* Cinematic Dark Overlay */}
+           
               <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10" />
 
               {/* Central Content Container */}
@@ -79,7 +79,7 @@ const Banner = () => {
                   {slide.description}
                 </p>
 
-                <div className="flex gap-4 flex-col sm:flex-row">
+                <div className="">
                   <Link href={slide.buttonLink}>
                     <Button
                       radius="none"
@@ -89,15 +89,6 @@ const Banner = () => {
                     </Button>
                   </Link>
 
-                  <Link href="/signin">
-                    <Button
-                      radius="none"
-                      variant="bordered"
-                      className="text-white border-white/30 hover:bg-white hover:text-black font-semibold tracking-wider px-8 py-6 transition-all duration-300"
-                    >
-                      Sign In
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -105,7 +96,7 @@ const Banner = () => {
         ))}
       </Swiper>
 
-      {/* Custom Styles for Pagination and Arrows */}
+      
       <style jsx global>{`
         .swiper-pagination-fraction {
           bottom: 2.5rem !important;
