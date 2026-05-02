@@ -105,7 +105,7 @@ const Banner = () => {
         ))}
       </Swiper>
 
-      {/* Custom Styles for Pagination */}
+      {/* Custom Styles for Pagination and Arrows */}
       <style jsx global>{`
         .swiper-pagination-fraction {
           bottom: 2.5rem !important;
@@ -119,6 +119,13 @@ const Banner = () => {
         .swiper-pagination-current {
           color: #ffffff;
           font-weight: 500;
+        }
+
+       
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: #D5B471 !important;
+          font-weight: bold;
         }
       `}</style>
     </div>
