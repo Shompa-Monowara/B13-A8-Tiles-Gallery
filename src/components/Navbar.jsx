@@ -31,8 +31,8 @@ const Navbar = () => {
             <Image
               src="/loader.svg"
               alt="Tiles Gallery Logo"
-              width={40}
-              height={40}
+              width={42}
+              height={42}
               className="object-contain "
             />
           </div>
@@ -44,12 +44,12 @@ const Navbar = () => {
        
         <ul className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wider text-gray-700">
           <li>
-            <Link href={"/"} className="hover:text-[#7a1e2d] transition-colors duration-200">
+            <Link href={"/"} className="hover:text-[#6D1731] transition-colors duration-200">
               Home
             </Link>
           </li>
           <li>
-            <Link href={"/all-tiles"} className="hover:text-[#7a1e2d] transition-colors duration-200">
+            <Link href={"/all-tiles"} className="hover:text-[#631421] transition-colors duration-200">
               All Tiles
             </Link>
           </li>
@@ -73,7 +73,7 @@ const Navbar = () => {
             isShowingLoginForm ? (
               <span className="bg-[#7a1e2d] text-white pl-5 pr-1 py-1 rounded-full shadow-md flex items-center gap-3 cursor-not-allowed select-none opacity-70">
                 <span>Login</span>
-                <span className="w-9 h-9 bg-[#c5a866]/80 text-[#7a1e2d] rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="w-9 h-9 bg-[#D5B471] text-[#7a1e2d] rounded-full flex items-center justify-center flex-shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                   </svg>
@@ -85,7 +85,7 @@ const Navbar = () => {
                 className="bg-[#7a1e2d] text-white hover:bg-[#631421] pl-5 pr-1 py-1 rounded-full transition-all duration-300 shadow-md flex items-center gap-3 group"
               >
                 <span>Login</span>
-                <span className="w-9 h-9 bg-[#c5a866]/80 text-[#7a1e2d] rounded-full flex items-center justify-center transition-transform group-hover:rotate-45 flex-shrink-0">
+                <span className="w-9 h-9 bg-[#D5B471]/80 text-[#7a1e2d] rounded-full flex items-center justify-center transition-transform group-hover:rotate-45 flex-shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                   </svg>

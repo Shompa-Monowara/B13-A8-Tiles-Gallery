@@ -44,8 +44,10 @@ const FeaturedCard = ({ tile }) => {
 
                 {/* Updated link to match the all-tiles directory structure */}
                 <Link href={`/all-tiles/${tile.id}`}>
-                    <Button variant="bordered" className="w-full">
-                        View
+                    <Button 
+                        className="w-full bg-[#6D1731] text-white hover:bg-[#c09d5e] font-semibold transition-colors"
+                    >
+                        View Details
                     </Button>
                 </Link>
             </div>
