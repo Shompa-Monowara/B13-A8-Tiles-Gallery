@@ -65,18 +65,8 @@ export default function LogInPage() {
     });
 
     if (googleError) {
-      setError(googleError.message || "Failed to sign in with Google.");
+      setError(googleError.message || "Failed to log in with Google.");
     }
-  };
-
-  const handleSignOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/signin");
-        },
-      },
-    });
   };
 
   if (isPending) {
@@ -90,61 +80,11 @@ export default function LogInPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-white px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
       
-      {/* ইউজার সেকশন (লগইন স্ট্যাটাস) */}
-      <div className="mb-6 flex gap-4 w-full max-w-md justify-end">
-        {!user && (
-          <ul className="flex items-center text-sm gap-5 text-gray-500">
-            <li>
-              <Link href={"/register"} className="hover:text-red-900 transition-colors">
-                SignUp
-              </Link>
-            </li>
-            <li>
-              <Link href={"/login"} className="hover:text-red-900 transition-colors">
-                SignIn
-              </Link>
-            </li>
-          </ul>
-        )}
-
-        {user && (
-          <div className="flex gap-3 items-center">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              <span className="truncate max-w-[100px]">{user?.name}</span>
-              
-              <div className="relative w-8 h-8 rounded-full overflow-hidden bg-gray-100 border border-gray-200">
-                {user?.image ? (
-                  <Image
-                    src={user?.image}
-                    alt={user?.name || "User"}
-                    referrerPolicy="no-referrer"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-xs font-bold text-red-900 bg-red-50">
-                    {user?.name?.charAt(0) || "U"}
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            <button
-              onClick={handleSignOut}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-all cursor-pointer"
-            >
-              SignOut
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* লগইন ফর্ম */}
+      {/* Login Form */}
       <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Sign In
+            Log In
           </h1>
           <p className="text-sm text-gray-500 font-light">
             Welcome back! Please enter your details.
