@@ -38,10 +38,9 @@ const AllTilesPage = () => {
     });
 
     return (
-        <div className="container mx-auto p-6 ">
-            <h1 className="text-3xl font-bold text-default-900 m-4">All Tiles</h1>
-
-            {/* Search Bar Section */}
+        
+        <div className="container mx-auto p-6 mt-24">
+           
             <div className="mb-8 max-w-lg mx-auto">
                 <form 
                     onSubmit={(e) => e.preventDefault()} 
@@ -73,14 +72,20 @@ const AllTilesPage = () => {
                         }
                     />
                     
-                    {/* Button kept for professional design structure */}
-                    <Button type="submit" color="#38BDF8" size="lg">
+                    
+                    <Button 
+                        type="submit" 
+                        size="lg"
+                        className="bg-[#6D1731] text-white hover:bg-[#8B1E3F] transition-colors font-semibold"
+                    >
                         Search
                     </Button>
                 </form>
             </div>
 
-            {/* Tiles Grid Section */}
+            <h1 className="text-3xl font-bold text-default-900 m-4">All Tiles</h1>
+
+           
             {filteredTiles.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {filteredTiles.map(tile => (

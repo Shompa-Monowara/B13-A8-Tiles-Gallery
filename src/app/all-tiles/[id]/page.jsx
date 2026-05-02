@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import { Chip } from "@heroui/react";
 
 const DetailsPage = async ({ params }) => {
     // Resolve params if using Next.js 15+ async pattern
@@ -26,6 +27,13 @@ const DetailsPage = async ({ params }) => {
                             className="object-cover"
                             priority
                         />
+                        {/* Category Chip */}
+                        <Chip 
+                            size="md" 
+                            className="absolute right-4 top-4 flex items-center justify-center h-8 px-4"
+                        >
+                            {tile.category}
+                        </Chip>
                     </div>
 
                     {/* Details Section */}
@@ -52,7 +60,9 @@ const DetailsPage = async ({ params }) => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-default-500">Category</span>
-                                <span className="font-medium text-default-800 capitalize">{tile.category}</span>
+                                <span className="font-medium text-default-800 capitalize">
+                                    {tile.category}
+                                </span>
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-default-500">Stock Status</span>
