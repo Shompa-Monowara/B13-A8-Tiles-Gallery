@@ -127,7 +127,7 @@ export default function LogInPage() {
             <button
               type="button"
               onClick={toggleVisibility}
-              className="absolute right-3 top-[38px] transform -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-1"
+              className="absolute right-3 top-[50px] transform -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-1"
               aria-label="toggle password visibility"
             >
               {isVisible ? (
@@ -150,7 +150,7 @@ export default function LogInPage() {
           <div className="flex gap-3 mt-3">
             <button
               type="submit"
-              className="flex-1 font-semibold rounded-xl h-11 bg-red-900 text-white shadow-sm hover:bg-red-950 transition-all duration-200 flex items-center justify-center gap-2"
+              className="flex-1 font-semibold rounded-xl h-11 bg-[#6D1731] text-white shadow-sm hover:bg-red-950 transition-all duration-200 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />

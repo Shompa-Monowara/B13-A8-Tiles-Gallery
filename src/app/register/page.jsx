@@ -29,17 +29,17 @@ export default function RegisterPage() {
     console.log({ data, error });
 
     if (!error) {
-      // ১. তৈরি হওয়া সেশনটি বাতিল করুন
+     
       await authClient.signOut();
       
-      // ২. এরপর লগইন পেজে রিডাইরেক্ট করুন
+     
       router.push("/login");
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] w-full bg-white px-4 py-8 sm:py-12 font-[var(--font-poppins, 'inherit')]">
-      {/* Create Account Form */}
+      
       <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
@@ -105,7 +105,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={toggleVisibility}
-              className="absolute right-3 top-[38px] transform -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-1"
+              className="absolute right-3 top-[50px] transform -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-1"
               aria-label="toggle password visibility"
             >
               {isVisible ? (
