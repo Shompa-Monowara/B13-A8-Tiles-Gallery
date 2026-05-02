@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       lang="en" data-theme="light" 
        className={`h-full antialiased`}
     >
-      <body className={`$poppinsfont.className} min-h-full flex flex-col`}>
+      <body className={`${poppinsfont.className} min-h-full flex flex-col`}>
         <Navbar />
         
         <main >{children}</main>
