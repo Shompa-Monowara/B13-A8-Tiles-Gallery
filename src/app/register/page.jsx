@@ -38,7 +38,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] w-full bg-white px-4 py-8 sm:py-12 font-[var(--font-poppins, 'inherit')]">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] mt-35 w-full bg-white px-4 py-8 sm:py-12 font-[var(--font-poppins, 'inherit')]">
       
       <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">

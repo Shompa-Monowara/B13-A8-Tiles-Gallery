@@ -78,20 +78,20 @@ export default function LogInPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-white px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
+    <div className="flex flex-col items-center justify-center mt-20 min-h-screen w-full bg-white px-4 py-12 sm:py-16 font-[var(--font-poppins, 'inherit')]">
       
-      {/* Login Form */}
+     
       <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
         <div className="flex flex-col gap-2 items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Sign In
+           Login
           </h1>
           <p className="text-sm text-gray-500 font-light">
             Welcome back! Please enter your details.
           </p>
         </div>
 
-        {/* Error Message Display */}
+        
         {error && (
           <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm text-center">
             {error}
