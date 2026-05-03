@@ -145,7 +145,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Off-canvas Overlay */}
+     
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
@@ -153,7 +153,7 @@ const Navbar = () => {
         />
       )}
 
-      {/* Off-canvas Drawer */}
+     
       <div
         className={`fixed top-0 right-0 h-full w-72 bg-[#FAF9F6] z-50 shadow-2xl md:hidden flex flex-col transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -200,7 +200,7 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Drawer Footer: User / Login */}
+        
         <div className="px-4 py-5 border-t border-[#7a1e2d]/10">
           {!user ? (
             isShowingLoginForm ? (
