@@ -114,19 +114,23 @@ const Navbar = () => {
                     </span>
                   ) : (
                     <Link href="/my-profile">
-                      <Avatar size="sm" className="cursor-pointer hover:opacity-80 transition-opacity border-2 border-[#7a1e2d]/30 shadow-sm">
+                      <Avatar size="lg" className="cursor-pointer hover:opacity-80 transition-opacity border-2 border-[#7a1e2d]/30 shadow-sm">
                         <Avatar.Image alt={user?.name || "User Avatar"} src={user?.image} referrerPolicy="no-referrer" />
                         <Avatar.Fallback>{user?.name?.charAt(0) || "U"}</Avatar.Fallback>
                       </Avatar>
                     </Link>
                   )}
-                  <Button
+                  <button
                     onClick={handleSignOut}
-                    size="sm"
-                    className="text-white bg-[#7a1e2d] hover:bg-[#631421] text-xs px-3 py-1.5 rounded-full transition-all border border-transparent shadow-sm"
+                    className="bg-[#7a1e2d] text-white hover:bg-[#631421] pl-5 pr-1 py-1 rounded-full transition-all duration-300 shadow-md flex items-center gap-3 group select-none"
                   >
-                    Logout
-                  </Button>
+                    <span>Logout</span>
+                    <span className="w-9 h-9 bg-[#D5B471]/80 text-[#7a1e2d] rounded-full flex items-center justify-center transition-transform group-hover:rotate-45 flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                      </svg>
+                    </span>
+                  </button>
                 </div>
               )}
             </div>
@@ -145,7 +149,6 @@ const Navbar = () => {
         </nav>
       </div>
 
-     
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
@@ -153,7 +156,6 @@ const Navbar = () => {
         />
       )}
 
-     
       <div
         className={`fixed top-0 right-0 h-full w-72 bg-[#FAF9F6] z-50 shadow-2xl md:hidden flex flex-col transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -200,7 +202,6 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        
         <div className="px-4 py-5 border-t border-[#7a1e2d]/10">
           {!user ? (
             isShowingLoginForm ? (
@@ -231,16 +232,18 @@ const Navbar = () => {
                 <p className="text-sm font-semibold text-gray-800 truncate">{user?.name}</p>
                 <p className="text-xs text-gray-400 truncate">{user?.email}</p>
               </div>
-              <Button
+              <button
                 onClick={() => {
                   handleSignOut();
                   setIsMobileMenuOpen(false);
                 }}
-                size="sm"
-                className="text-white bg-[#7a1e2d] hover:bg-[#631421] text-xs px-3 py-1 rounded-full transition-all border border-transparent shadow-sm flex-shrink-0"
+                className="text-white bg-[#7a1e2d] hover:bg-[#631421] text-xs px-3 py-2 rounded-full transition-all border border-transparent shadow-sm flex-shrink-0 flex items-center gap-1.5 font-bold"
               >
                 Logout
-              </Button>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
+              </button>
             </div>
           )}
         </div>
