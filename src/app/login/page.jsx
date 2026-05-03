@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ClipLoader from "react-spinners/ClipLoader";
+import toast from "react-hot-toast"; // <-- রিয়্যাক্ট হট টোস্ট ইম্পোর্ট করা হলো
 
 export default function LogInPage() {
   const router = useRouter();
@@ -53,6 +54,8 @@ export default function LogInPage() {
         );
       }
     } else {
+      
+      toast.success("Login Successful!");
       router.push("/");
     }
   };
@@ -67,13 +70,16 @@ export default function LogInPage() {
 
     if (googleError) {
       setError(googleError.message || "Failed to login with Google.");
+    } else {
+    
+      toast.success("Successful to Google login...");
     }
   };
 
   return (
     <div className="container mx-auto max-w-4xl py-12 px-4 mt-25  flex flex-col justify-center font-[var(--font-poppins, 'inherit')]">
       
-      {/* Page Header */}
+      
       <div className="mb-10 text-center ">
         <h1 className="text-4xl font-bold text-gray-900">Login</h1>
         <p className="text-gray-500 mt-2">
@@ -81,7 +87,7 @@ export default function LogInPage() {
         </p>
       </div>
 
-      {/* Main Container */}
+     
       <div className="flex justify-center items-center w-full">
         <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
           

@@ -2,6 +2,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
+
 
 const poppinsfont = Poppins({
   subsets: ["latin"],
@@ -23,6 +25,10 @@ export default function RootLayout({ children }) {
         <Navbar />
         
         <main >{children}</main>
+         <Toaster 
+          position="top-center" 
+          reverseOrder={false} 
+        />
         <Footer/>
       </body>
     </html>
