@@ -66,7 +66,7 @@ const DetailsPage = async ({ params }) => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-default-500">Stock Status</span>
-                                <span className={`font-medium ${tile.inStock ? 'text-success' : 'text-danger'}`}>
+                                <span className={`font-medium ${tile.inStock ? 'text-[#6D1731]' : 'text-[#6D1731]'}`}>
                                     {tile.inStock ? 'In Stock' : 'Out of Stock'}
                                 </span>
                             </div>

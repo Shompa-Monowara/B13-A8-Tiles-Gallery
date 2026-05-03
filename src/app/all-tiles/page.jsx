@@ -3,29 +3,33 @@
 import { useState, useEffect } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
 import { useSearchParams } from "next/navigation";
+import { ClipLoader } from "react-spinners"; // ইমপোর্ট করা হলো
 
 const AllTilesPage = () => {
     const [tiles, setTiles] = useState([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(true);
     
     const searchParams = useSearchParams();
     const category = searchParams.get("category");
 
-    // Fetching the tile data on component mount
     useEffect(() => {
         const fetchTiles = async () => {
+            setLoading(true);
             try {
                 const res = await fetch('http://localhost:3000/data.json');
                 const data = await res.json();
+                 await new Promise(resolve => setTimeout(resolve, 1000));
                 setTiles(data);
             } catch (error) {
                 console.error("Error fetching tiles:", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchTiles();
     }, []);
 
-    // Filter tiles based on category and search query
     const filteredTiles = tiles.filter(tile => {
         const matchesCategory = category 
             ? tile.category.toLowerCase() === category.toLowerCase() 
@@ -82,7 +86,12 @@ const AllTilesPage = () => {
 
             <h1 className="text-3xl font-bold text-gray-900 m-4">All Tiles</h1>
 
-            {filteredTiles.length > 0 ? (
+            
+            {loading ? (
+                <div className="flex justify-center items-center py-20">
+                    <ClipLoader color="#6D1731" loading={loading} size={50} />
+                </div>
+            ) : filteredTiles.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {filteredTiles.map(tile => (
                         <FeaturedCard key={tile.id} tile={tile} />

@@ -1,60 +1,76 @@
 "use client";
+
 import { UpdateUserModal } from "@/components/UpdateCardModal";
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Card } from "@heroui/react";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Avatar } from "@heroui/react";
 
 const ProfilePage = () => {
-  const { data: session, isPending } = authClient.useSession();
-  const user = session?.user;
-  const router = useRouter();
+  const userData = authClient.useSession();
+  const user = userData.data?.user;
 
-  
-  useEffect(() => {
-    if (!isPending && !user) {
-      router.push("/login");
-    }
-  }, [user, isPending, router]);
-
- 
-  if (isPending) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-slate-950 text-white">
-        <p>Loading your profile...</p>
-      </div>
-    );
-  }
-
- 
-  if (!user) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-slate-950 text-white">
-        <p>Redirecting to login...</p>
-      </div>
-    );
-  }
-
- 
   return (
-    <div className="min-h-screen bg-slate-950 flex justify-center items-center">
-      <Card className="w-full max-w-md p-8 bg-slate-900/60 backdrop-blur-xl border border-[#38BDF8]/20 shadow-xl rounded-3xl text-white flex flex-col items-center">
-        <Avatar className="h-20 w-20">
-          <Avatar.Image
-            alt={user?.name || "User"}
-            src={user?.image}
-            referrerPolicy="no-referrer"
-          />
-          <Avatar.Fallback>{user?.name?.charAt(0) || "U"}</Avatar.Fallback>
-        </Avatar>
+    <div className="container mx-auto max-w-4xl py-12 px-4 mt-30">
+      {/* Page Header */}
+      <div className="mb-10 text-center ">
+        <h1 className="text-4xl font-bold text-gray-900">User Profile</h1>
+        <p className="text-gray-500 mt-2">
+          Manage your account settings and profile details.
+        </p>
+      </div>
 
-        <h2 className="text-xl font-bold mt-4 tracking-wider">{user?.name}</h2>
-        <p className="text-sm text-white/60 mt-1">{user?.email}</p>
+      {/* Main Container */}
+      <div className="flex justify-center items-center">
+        <div className="w-full max-w-lg">
+          {/* Profile Card */}
+          <div className="bg-white rounded-3xl shadow-[0_8px_40px_rgb(0,0,0,0.10)] border border-[#7a1e2d]/10 overflow-hidden">
+            {/* Banner */}
+            <div className="h-40 bg-gradient-to-br from-[#7a1e2d] to-[#631421] relative">
+              <div
+                className="absolute inset-0 opacity-10"
+                style={{
+                  backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
+                  backgroundSize: "20px 20px",
+                }}
+              />
+            </div>
 
-        <div className="mt-6 w-full">
-          <UpdateUserModal />
+            {/* Content */}
+            <div className="flex flex-col items-center -mt-16 px-10 pb-12">
+              {/* Avatar */}
+              <div className="ring-4 ring-white rounded-full shadow-md">
+                <Avatar className="h-32 w-32">
+                  <Avatar.Image
+                    alt={user?.name || "User"}
+                    src={user?.image}
+                    referrerPolicy="no-referrer"
+                  />
+                  <Avatar.Fallback className="bg-[#7a1e2d] text-white text-4xl font-bold">
+                    {user?.name?.charAt(0) || "U"}
+                  </Avatar.Fallback>
+                </Avatar>
+              </div>
+
+              {/* Name & Email */}
+              <h2 className="text-3xl font-bold mt-5 text-gray-900 tracking-wide">
+                {user?.name || "Unknown User"}
+              </h2>
+              <p className="text-lg text-gray-400 mt-2">{user?.email}</p>
+
+              {/* Divider */}
+              <div className="w-full h-px bg-gray-100 my-7" />
+
+              {/* Update Button */}
+              <div className="w-full">
+                <UpdateUserModal />
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-gray-400 mt-6 tracking-wide">
+            Manage your profile details
+          </p>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
