@@ -37,7 +37,7 @@ export default function RegisterPage() {
   return (
     <div className="container mx-auto  py-12 px-4   flex flex-col justify-center font-[var(--font-poppins, 'inherit')]">
       
-      {/* Page Header */}
+      
       <div className="mb-10 text-center mt-25">
         <h1 className="text-4xl font-bold text-gray-900">Create Account</h1>
         <p className="text-gray-500 mt-2">
@@ -45,7 +45,7 @@ export default function RegisterPage() {
         </p>
       </div>
 
-      {/* Main Container */}
+     
       <div className="flex justify-center items-center w-full">
         <div className="w-full max-w-md p-8 md:p-10 bg-white border border-gray-200 shadow-sm rounded-3xl">
           
