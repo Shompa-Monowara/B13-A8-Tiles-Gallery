@@ -1,33 +1,21 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
-import { ClipLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 import { HiOutlineSearch } from "react-icons/hi";
-
 
 const AllTilesPage = () => {
     const [tiles, setTiles] = useState([]);
     const [search, setSearch] = useState("");
-    const [loading, setLoading] = useState(true);
 
     const searchParams = useSearchParams();
     const category = searchParams.get("category");
 
     useEffect(() => {
         const fetchTiles = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch('http://localhost:3000/data.json');
-                const data = await res.json();
-                
-                setTiles(data);
-            } catch (error) {
-                console.error("Error fetching tiles:", error);
-            } finally {
-                setLoading(false);
-            }
+            const res = await fetch('http://localhost:3000/data.json');
+            const data = await res.json();
+            setTiles(data);
         };
         fetchTiles();
     }, []);
@@ -44,7 +32,6 @@ const AllTilesPage = () => {
         <div
             className="max-w-7xl mx-auto px-4 md:px-8 mt-40 mb-20 font-sans"
         >
-            
             <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
                     <span className="block w-6 h-px bg-[#D5B471]" />
@@ -60,7 +47,6 @@ const AllTilesPage = () => {
                 <div className="w-full h-px bg-gradient-to-r from-[#D5B471]/50 via-[#7a1e2d]/10 to-transparent mt-8" />
             </div>
 
-            
             <div className="mb-12 max-w-xl">
                 <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-3">
                     <div className="relative flex-1">
@@ -87,15 +73,7 @@ const AllTilesPage = () => {
                 </form>
             </div>
 
-            
-            {loading ? (
-                <div className="flex flex-col justify-center items-center py-28 gap-5">
-                    <ClipLoader color="#7a1e2d" loading={loading} size={36} />
-                    <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#7a1e2d]/40">
-                        Loading Collection
-                    </p>
-                </div>
-            ) : filteredTiles.length > 0 ? (
+            {filteredTiles.length > 0 ? (
                 <>
                     <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#7a1e2d]/40 mb-8">
                         {filteredTiles.length} {filteredTiles.length === 1 ? "Result" : "Results"}
