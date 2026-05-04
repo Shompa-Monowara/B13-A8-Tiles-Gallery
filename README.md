@@ -6,8 +6,8 @@ Welcome to **Tiles Gallery**, a modern, elegant, and fully responsive Single Pag
 
 ## 🚀 Live URL & Repository
 
-- **Live Site URL:** https://your-live-site.vercel.app
-- **GitHub Repository:** https://github.com/your-username/tiles-gallery
+- **Live Site URL:** https://b13-a8-tiles-gallery.vercel.app/
+- **GitHub Repository:** https://github.com/Shompa-Monowara/B13-A8-Tiles-Gallery
 
 ---
 
