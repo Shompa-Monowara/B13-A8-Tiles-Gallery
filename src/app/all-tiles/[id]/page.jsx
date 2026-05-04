@@ -15,7 +15,7 @@ const DetailsPage = ({ params }) => {
             if (!id) return;
             setLoading(true);
             try {
-                const res = await fetch('https://b13-a8-tiles-gallery.vercel.app/');
+                const res = await fetch('https://b13-a8-tiles-gallery.vercel.app/data.json');
                 const tiles = await res.json();
                 const foundTile = tiles.find(t => String(t.id) === String(id));
                 setTile(foundTile);
