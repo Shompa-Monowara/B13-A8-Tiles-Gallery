@@ -88,14 +88,7 @@ const ProfilePage = () => {
             <div className="w-full flex flex-col gap-3">
               <UpdateUserModal />
 
-              <button
-                onClick={handleLogout}
-                className="group relative w-full h-11 text-[10.5px] font-semibold tracking-[0.22em] uppercase overflow-hidden border border-[#7a1e2d] flex items-center justify-center gap-2 transition-colors duration-300 text-[#7a1e2d] hover:text-white"
-              >
-                <span className="absolute inset-0 bg-[#7a1e2d] -translate-x-full group-hover:translate-x-0 transition-transform duration-[350ms] ease-out" />
-                <HiArrowRightOnRectangle className="relative z-10 w-3.5 h-3.5" />
-                <span className="relative z-10">Logout</span>
-              </button>
+             
             </div>
           </div>
         </div>
