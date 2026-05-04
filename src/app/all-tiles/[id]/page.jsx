@@ -2,22 +2,28 @@
 
 import React, { useState, useEffect, use } from 'react';
 import Image from "next/image";
+import { ClipLoader } from "react-spinners";
 
 const DetailsPage = ({ params }) => {
     const resolvedParams = use(params);
     const id = resolvedParams.id;
     const [tile, setTile] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTile = async () => {
             if (!id) return;
+            setLoading(true);
             try {
-                const res = await fetch('https://pixen-phi.vercel.app/data.json');
+                const res = await fetch('http://localhost:3000/data.json');
                 const tiles = await res.json();
                 const foundTile = tiles.find(t => String(t.id) === String(id));
                 setTile(foundTile);
+                await new Promise(resolve => setTimeout(resolve, 1000)); 
             } catch (error) {
                 console.error("Error fetching tile details:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -28,7 +34,14 @@ const DetailsPage = ({ params }) => {
         <div
             className="max-w-5xl mx-auto px-4 md:px-8 mt-36 mb-24 text-[#2a0e17] font-sans"
         >
-            {tile ? (
+            {loading ? (
+                <div className="flex flex-col justify-center items-center py-28 gap-5">
+                    <ClipLoader color="#7a1e2d" loading={loading} size={36} />
+                    <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#7a1e2d]/40">
+                        Loading Tile
+                    </p>
+                </div>
+            ) : tile ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
                     
                     <div className="relative w-full aspect-square overflow-hidden bg-[#f5f0eb]">
@@ -82,6 +95,7 @@ const DetailsPage = ({ params }) => {
                                     {tile.currency} {tile.price}
                                 </span>
                             </div>
+
                             
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
@@ -91,6 +105,7 @@ const DetailsPage = ({ params }) => {
                                     {tile.material}
                                 </span>
                             </div>
+
                             
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
@@ -100,6 +115,7 @@ const DetailsPage = ({ params }) => {
                                     {tile.dimensions}
                                 </span>
                             </div>
+
                             
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
@@ -109,6 +125,7 @@ const DetailsPage = ({ params }) => {
                                     {tile.category}
                                 </span>
                             </div>
+
                             
                             <div className="flex justify-between items-center py-3.5">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
