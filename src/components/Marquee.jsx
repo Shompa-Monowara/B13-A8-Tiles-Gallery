@@ -1,34 +1,75 @@
-import React from 'react';
+"use client";
 import Marquee from "react-fast-marquee";
+
+const items = [
+  { label: "New →", text: "Carrara Marble Polish" },
+  null, // separator
+  { text: "Weekly Feature: Modern Geometric Patterns" },
+  null,
+  { text: "Join the Community & Explore Exclusive Collections" },
+  null,
+];
 
 const MarqueeSection = () => {
   return (
-    <div className="bg-[#3F3B36] border-b border-white/15 text-sm tracking-wider uppercase font-medium text-white py-3.5 w-full">
-      {/* কন্টেইনারটিকে max-w-7xl-এ বেঁধে দেওয়া হয়েছে যাতে এটি সেন্টারে থাকে */}
-      <div className="max-w-7xl mx-auto flex items-center px-4 md:px-8 w-full">
-        {/* Marquee-র বাইরে থাকা বাটন */}
-        <button className="bg-[#6D1731] text-white text-[14px] px-3 py-2 text-xs font-bold tracking-wider hover:bg-[#8B1E3F] transition-colors shrink-0 rounded-md">
-          New Arrivals:
-        </button>
+    <div
+      className="w-full overflow-hidden border-b border-white/[0.08] flex items-stretch bg-[#2B2720] h-[46px] font-sans"
+    >
+      {/* Badge with arrow tail */}
+      <div className="relative flex items-center gap-2 shrink-0 px-4 pr-6 bg-[#6D1731]">
+        {/* Pulsing dot */}
+        <span className="w-[5px] h-[5px] rounded-full bg-[#D5B471] animate-pulse shrink-0" />
+        <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white whitespace-nowrap">
+          New Arrivals
+        </span>
+        {/* Arrow tail */}
+        <span
+          className="absolute -right-[10px] top-0 bottom-0 w-5 z-10 bg-[#6D1731] [clip-path:polygon(0_0,60%_0,100%_50%,60%_100%,0_100%)]"
+        />
+      </div>
 
-        {/* Marquee সেকশন, যা শুধু বাকি টেক্সটগুলো স্ক্রোল করবে */}
-        <Marquee 
-          gradient={false} 
-          speed={50}
-          className="flex-1 ml-6"
-        >
-          <span className="mx-8">
-            Carrara Marble Polish
-          </span>
-          <span className="text-[#D5B471] mx-6">|</span>
-          <span className="mx-8">
-            Weekly Feature: Modern Geometric Patterns
-          </span>
-          <span className="text-[#D5B471] mx-6">|</span>
-          <span className="mx-8">
-            Join the Community & Explore Exclusive Collections
-          </span>
+      {/* Marquee */}
+      <div
+        className="flex-1 overflow-hidden flex items-center pl-7 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      >
+        <Marquee gradient={false} speed={50}>
+          {items.map((item, i) =>
+            item === null ? (
+              <span
+                key={i}
+                className="inline-block w-px mx-0 shrink-0 h-[14px] bg-[rgba(213,180,113,0.35)]"
+              />
+            ) : (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1 px-8 text-[12px] tracking-[0.14em] uppercase font-light text-white/70 whitespace-nowrap"
+              >
+                {item.label && (
+                  <strong className="text-[#D5B471] font-medium not-italic">{item.label}&nbsp;</strong>
+                )}
+                {item.text}
+              </span>
+            )
+          )}
         </Marquee>
+      </div>
+
+      {/* View All CTA */}
+      <div className="group flex items-center gap-1.5 px-5 border-l border-white/[0.08] shrink-0 cursor-pointer">
+        <span className="text-[11px] tracking-[0.15em] uppercase font-light text-white/40 group-hover:text-[#D5B471] transition-colors duration-200">
+          View All
+        </span>
+        <svg
+          width="12" height="12" viewBox="0 0 12 12" fill="none"
+          className="group-hover:translate-x-0.5 transition-transform duration-200"
+        >
+          <line x1="2" y1="6" x2="10" y2="6" stroke="rgba(213,180,113,0.6)" strokeWidth="1" />
+          <polyline
+            points="7,3 10,6 7,9" fill="none"
+            stroke="rgba(213,180,113,0.6)" strokeWidth="1"
+            strokeLinecap="round" strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </div>
   );

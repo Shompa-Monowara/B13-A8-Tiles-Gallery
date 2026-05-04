@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
+import { ClipLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
-import { ClipLoader } from "react-spinners"; // ইমপোর্ট করা হলো
+import { HiOutlineSearch } from "react-icons/hi";
 
 const AllTilesPage = () => {
     const [tiles, setTiles] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
-    
+
     const searchParams = useSearchParams();
     const category = searchParams.get("category");
 
@@ -19,7 +20,7 @@ const AllTilesPage = () => {
             try {
                 const res = await fetch('http://localhost:3000/data.json');
                 const data = await res.json();
-                 await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 setTiles(data);
             } catch (error) {
                 console.error("Error fetching tiles:", error);
@@ -31,75 +32,92 @@ const AllTilesPage = () => {
     }, []);
 
     const filteredTiles = tiles.filter(tile => {
-        const matchesCategory = category 
-            ? tile.category.toLowerCase() === category.toLowerCase() 
+        const matchesCategory = category
+            ? tile.category.toLowerCase() === category.toLowerCase()
             : true;
-            
         const matchesSearch = tile.title.toLowerCase().includes(search.toLowerCase());
-
         return matchesCategory && matchesSearch;
     });
 
     return (
-        <div className="container mx-auto p-6 mt-24 font-[var(--font-poppins, 'inherit')]">
+        <div
+            className="max-w-7xl mx-auto px-4 md:px-8 mt-40 mb-20 font-sans"
+        >
             
-            <div className="mb-8 max-w-lg mx-auto">
-                <form 
-                    onSubmit={(e) => e.preventDefault()} 
-                    className="flex items-center gap-3 w-full"
+            <div className="mb-12">
+                <div className="flex items-center gap-3 mb-3">
+                    <span className="block w-6 h-px bg-[#D5B471]" />
+                    <p className="text-[10px] font-semibold tracking-[0.35em] uppercase text-[#D5B471]">
+                        {category ? category : "Complete Collection"}
+                    </p>
+                </div>
+                <h1
+                    className="text-[42px] md:text-[52px] font-light tracking-[0.03em] leading-[1.1] text-[#2a0e17] font-serif"
                 >
-                    <div className="relative w-full">
+                    All <em className="not-italic text-[#7a1e2d]">Tiles</em>
+                </h1>
+                <div className="w-full h-px bg-gradient-to-r from-[#D5B471]/50 via-[#7a1e2d]/10 to-transparent mt-8" />
+            </div>
+
+            
+            <div className="mb-12 max-w-xl">
+                <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-3">
+                    <div className="relative flex-1">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                strokeWidth={2} 
-                                stroke="currentColor" 
-                                className="w-5 h-5 text-gray-400"
-                            >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.601 10.601Z" 
-                                />
-                            </svg>
+                            <HiOutlineSearch className="w-4 h-4 text-[#7a1e2d]/30" />
                         </span>
                         <input
                             name="search"
                             type="text"
-                            placeholder="Search for tiles by title..."
+                            placeholder="Search tiles by title..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full h-12 pl-11 pr-4 rounded-xl bg-gray-50 hover:bg-gray-100 focus:bg-white border border-gray-300 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6D1731]/40 transition-all shadow-sm"
+                            className="w-full h-11 pl-11 pr-4 bg-white border border-[#7a1e2d]/15 text-[13px] text-[#2a0e17] placeholder:text-[#7a1e2d]/30 focus:outline-none focus:border-[#7a1e2d]/40 focus:ring-1 focus:ring-[#7a1e2d]/10 transition-all duration-200"
                         />
                     </div>
-                    
-                    <button 
-                        type="submit" 
-                        className="h-12 px-6 bg-[#6D1731] text-white hover:bg-[#8B1E3F] transition-colors font-semibold rounded-xl shadow-sm"
+
+                    <button
+                        type="submit"
+                        className="relative h-11 px-7 text-[10.5px] font-semibold tracking-[0.22em] uppercase overflow-hidden border border-[#7a1e2d]/20 text-[#7a1e2d]/60 bg-transparent hover:text-white hover:border-[#7a1e2d] transition-colors duration-300 group"
                     >
-                        Search
+                        <span className="absolute inset-0 bg-[#7a1e2d] -translate-x-full group-hover:translate-x-0 transition-transform duration-[350ms] ease-out" />
+                        <span className="relative">Search</span>
                     </button>
                 </form>
             </div>
 
-            <h1 className="text-3xl font-bold text-gray-900 m-4">All Tiles</h1>
-
             
             {loading ? (
-                <div className="flex justify-center items-center py-20">
-                    <ClipLoader color="#6D1731" loading={loading} size={50} />
+                <div className="flex flex-col justify-center items-center py-28 gap-5">
+                    <ClipLoader color="#7a1e2d" loading={loading} size={36} />
+                    <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#7a1e2d]/40">
+                        Loading Collection
+                    </p>
                 </div>
             ) : filteredTiles.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {filteredTiles.map(tile => (
-                        <FeaturedCard key={tile.id} tile={tile} />
-                    ))}
-                </div>
+                <>
+                    <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#7a1e2d]/40 mb-8">
+                        {filteredTiles.length} {filteredTiles.length === 1 ? "Result" : "Results"}
+                        {category && (
+                            <span className="text-[#D5B471] ml-2">— {category}</span>
+                        )}
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {filteredTiles.map(tile => (
+                            <FeaturedCard key={tile.id} tile={tile} />
+                        ))}
+                    </div>
+                </>
             ) : (
-                <div className="text-center py-16">
-                    <h2 className="text-xl font-medium text-gray-500">No tiles found matching your search.</h2>
+                <div className="flex flex-col items-center justify-center py-28 gap-4">
+                    <div className="w-12 h-px bg-[#D5B471]/50" />
+                    <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-[#7a1e2d]/40">
+                        No Results Found
+                    </p>
+                    <p className="text-[13px] text-[#7a1e2d]/30 mt-1">
+                        Try adjusting your search term.
+                    </p>
                 </div>
             )}
         </div>

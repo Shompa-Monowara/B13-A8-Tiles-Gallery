@@ -4,137 +4,105 @@ import { UpdateUserModal } from "@/components/UpdateCardModal";
 import { authClient } from "@/lib/auth-client";
 import { Avatar } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
 
 const ProfilePage = () => {
   const router = useRouter();
   const userData = authClient.useSession();
   const user = userData.data?.user;
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
-    setIsLoggingOut(true);
     await authClient.signOut();
-    window.location.href = "/login";
   };
 
   return (
-    <div className="container mx-auto max-w-4xl py-12 px-4 mt-30 font-[var(--font-poppins, 'inherit')]">
-      {/* Page Header */}
-      <div className="mb-10 text-center ">
-        <h1 className="text-4xl font-bold text-gray-900">User Profile</h1>
-        <p className="text-gray-500 mt-2">
-          Manage your account settings and profile details.
-        </p>
-      </div>
+    <div className="min-h-screen flex items-center justify-center px-4 py-16 mt-10 font-sans">
+      <div className="w-full max-w-md">
 
-      {/* Main Container */}
-      <div className="flex justify-center items-center">
-        <div className="w-full max-w-lg">
-          {/* Profile Card */}
-          <div className="bg-white rounded-3xl shadow-[0_8px_40px_rgb(0,0,0,0.10)] border border-[#7a1e2d]/10 overflow-hidden">
-            {/* Banner */}
-            <div className="h-40 bg-gradient-to-br from-[#7a1e2d] to-[#631421] relative">
-              <div
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
-                  backgroundSize: "20px 20px",
-                }}
-              />
-            </div>
+        {/* Header */}
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="block w-6 h-px bg-[#D5B471]" />
+            <p className="text-[10px] font-semibold tracking-[0.35em] uppercase text-[#D5B471]">
+              Account
+            </p>
+          </div>
+          <h1 className="text-[40px] font-light tracking-[0.03em] leading-[1.1] text-[#2a0e17] font-serif">
+            User <em className="not-italic text-[#7a1e2d]">Profile</em>
+          </h1>
+          <div className="w-full h-px bg-gradient-to-r from-[#D5B471]/50 via-[#7a1e2d]/10 to-transparent mt-5" />
+        </div>
 
-            {/* Content */}
-            <div className="flex flex-col items-center -mt-20 px-10 pb-12">
-              {/* Avatar */}
-              <div className="ring-4 ring-white rounded-full shadow-md">
-                <Avatar className="h-40 w-40 text-4xl">
+        
+        <div className="bg-white border border-[#7a1e2d]/10 shadow-[0_4px_32px_rgba(122,30,45,0.06)]">
+
+          
+          <div className="h-28 bg-[#7a1e2d] relative overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `radial-gradient(circle, #D5B471 1px, transparent 1px)`,
+                backgroundSize: "18px 18px",
+              }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#D5B471]/15 to-transparent" />
+          </div>
+
+          
+          <div className="flex flex-col items-center -mt-16 px-8 pb-10">
+
+         
+            <div className="ring-4 ring-white shadow-[0_4px_20px_rgba(122,30,45,0.2)] rounded-full">
+              <Avatar className="h-32 w-32 text-4xl">
+                {user?.image ? (
                   <Avatar.Image
                     alt={user?.name || "User"}
                     src={user?.image}
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-cover"
                   />
-                  <Avatar.Fallback className="bg-[#7a1e2d] text-white text-5xl font-bold">
-                    {user?.name?.charAt(0) || "U"}
-                  </Avatar.Fallback>
-                </Avatar>
-              </div>
+                ) : null}
+                <Avatar.Fallback className="bg-[#7a1e2d] text-white text-4xl font-bold">
+                  {user?.name?.charAt(0) || "U"}
+                </Avatar.Fallback>
+              </Avatar>
+            </div>
 
-              {/* Name & Email */}
-              <h2 className="text-3xl font-bold mt-5 text-gray-900 tracking-wide">
-                {user?.name || "Unknown User"}
-              </h2>
-              <p className="text-lg text-gray-400 mt-2">{user?.email}</p>
+            <h2 className="text-[28px] font-light mt-5 text-[#2a0e17] tracking-[0.04em] font-serif">
+              {userData.data === undefined ? "\u00A0" : user?.name || "Unknown User"}
+            </h2>
 
-              {/* Divider */}
-              <div className="w-full h-px bg-gray-100 my-7" />
+           
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#7a1e2d]/40 mt-1">
+              {userData.data === undefined ? "\u00A0" : user?.email || ""}
+            </p>
 
-              {/* Update & Logout Buttons */}
-              <div className="w-full flex flex-col gap-3">
-                <UpdateUserModal />
+           
+            <div className="w-full flex items-center gap-3 my-7">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#D5B471]/30" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#D5B471]" />
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#D5B471]/30" />
+            </div>
 
-                <button
-                  onClick={handleLogout}
-                  disabled={isLoggingOut}
-                  className={`w-full font-semibold rounded-xl h-11 bg-[#6D1731] text-white shadow-sm transition-all duration-200 flex items-center justify-center gap-2 ${
-                    isLoggingOut
-                      ? "opacity-75 cursor-not-allowed bg-[#571023]"
-                      : "hover:bg-red-950"
-                  }`}
-                >
-                  {isLoggingOut ? (
-                    <>
-                      <svg
-                        className="animate-spin h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg>
-                      Signing out...
-                    </>
-                  ) : (
-                    <>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        stroke="currentColor"
-                        className="w-4 h-4"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-                        />
-                      </svg>
-                      Logout
-                    </>
-                  )}
-                </button>
-              </div>
+         
+            <div className="w-full flex flex-col gap-3">
+              <UpdateUserModal />
+
+              <button
+                onClick={handleLogout}
+                className="group relative w-full h-11 text-[10.5px] font-semibold tracking-[0.22em] uppercase overflow-hidden border border-[#7a1e2d] flex items-center justify-center gap-2 transition-colors duration-300 text-[#7a1e2d] hover:text-white"
+              >
+                <span className="absolute inset-0 bg-[#7a1e2d] -translate-x-full group-hover:translate-x-0 transition-transform duration-[350ms] ease-out" />
+                <HiArrowRightOnRectangle className="relative z-10 w-3.5 h-3.5" />
+                <span className="relative z-10">Logout</span>
+              </button>
             </div>
           </div>
-
-          <p className="text-center text-sm text-gray-400 mt-6 tracking-wide">
-            Manage your profile details
-          </p>
         </div>
+
+        <p className="text-center text-[11px] font-light tracking-[0.12em] uppercase text-[#7a1e2d]/30 mt-6">
+          Manage your profile details
+        </p>
       </div>
     </div>
   );
