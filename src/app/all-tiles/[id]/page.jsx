@@ -32,7 +32,7 @@ const DetailsPage = ({ params }) => {
 
     return (
         <div
-            className="max-w-5xl mx-auto px-4 md:px-8 mt-40 mb-24 text-[#2a0e17] font-sans"
+            className="max-w-5xl mx-auto px-4 md:px-8 mt-50 mb-24 text-[#2a0e17] font-sans"
         >
             {loading ? (
                 <div className="flex flex-col justify-center items-center py-28 gap-5">
