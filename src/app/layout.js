@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       data-theme="light" 
       className={`h-full antialiased ${jost.variable} ${cormorant.variable}`}
     >
-      <body className="font-sans antialiased min-h-full flex flex-col text-[#2a0e17] bg-[#f5f0eb]">
+      <body className="${font-sans} antialiased min-h-full flex flex-col text-[#2a0e17] bg-[#f5f0eb]">
         <Navbar />
         
         <main>{children}</main>
