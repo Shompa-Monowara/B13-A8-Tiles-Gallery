@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/app/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { HiOutlineHome, HiOutlineViewGrid, HiOutlineUser } from "react-icons/hi";
 import { HiArrowUpRight, HiArrowRightOnRectangle } from "react-icons/hi2";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { authClient } from "@/app/lib/auth-client";
 
 const Navbar = () => {
   const userData = authClient.useSession();
@@ -107,15 +108,18 @@ const Navbar = () => {
                       </Avatar>
                     </Link>
                   )}
+                 <Link href={"/login"}>
                   <button
                     onClick={handleSignOut}
                     className="bg-[#7a1e2d] text-white hover:bg-[#5c1522] pl-5 pr-1 py-1 rounded-full transition-all duration-300 shadow-[0_4px_14px_rgba(122,30,45,0.3)] flex items-center gap-3 group select-none text-[10.5px] font-semibold tracking-[0.2em] uppercase"
                   >
+                  
                     <span>Logout</span>
                     <span className="w-9 h-9 bg-[#D5B471] text-[#7a1e2d] rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 flex-shrink-0">
                       <HiArrowRightOnRectangle className="w-4 h-4" />
                     </span>
                   </button>
+                 </Link>
                 </div>
               )}
             </div>
@@ -204,9 +208,10 @@ const Navbar = () => {
                 <p className="text-sm font-semibold text-[#7a1e2d] truncate">{user?.name}</p>
                 <p className="text-xs text-[#7a1e2d]/40 truncate">{user?.email}</p>
               </div>
+             <Link href="/logout">
               <button
                 onClick={() => {
-                  handleSignOutAction();
+                  handleSignOut();
                   setIsMobileMenuOpen(false);
                 }}
                 className="text-white bg-[#7a1e2d] hover:bg-[#5c1522] text-[10px] px-3 py-2 rounded-full transition-all shadow-sm flex-shrink-0 flex items-center gap-1.5 font-bold tracking-[0.15em] uppercase"
@@ -214,6 +219,7 @@ const Navbar = () => {
                 Logout
                 <HiArrowRightOnRectangle className="w-4 h-4" />
               </button>
+             </Link>
             </div>
           )}
         </div>
