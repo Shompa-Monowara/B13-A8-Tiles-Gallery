@@ -1,28 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import Image from "next/image";
 import { ClipLoader } from "react-spinners";
 
 const DetailsPage = ({ params }) => {
-    const [id, setId] = useState(null);
+    const resolvedParams = use(params);
+    const id = resolvedParams.id;
     const [tile, setTile] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const unwrapParams = async () => {
-            const resolvedParams = await params;
-            setId(resolvedParams.id);
-        };
-        unwrapParams();
-    }, [params]);
 
     useEffect(() => {
         const fetchTile = async () => {
             if (!id) return;
             setLoading(true);
             try {
-                const res = await fetch('http://localhost:3000/data.json');
+                const res = await fetch('/data.json');
                 const tiles = await res.json();
                 const foundTile = tiles.find(t => String(t.id) === String(id));
                 setTile(foundTile);
@@ -50,8 +43,7 @@ const DetailsPage = ({ params }) => {
                 </div>
             ) : tile ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-
-                   
+                    
                     <div className="relative w-full aspect-square overflow-hidden bg-[#f5f0eb]">
                         <Image
                             src={tile.imageUrl}
@@ -61,16 +53,14 @@ const DetailsPage = ({ params }) => {
                             className="object-cover"
                             priority
                         />
-                       
+                        
                         <span className="absolute top-3.5 left-3.5 bg-[#2a0e17]/60 backdrop-blur-md text-[#D5B471] text-[9.5px] font-semibold tracking-[0.2em] uppercase px-3 py-[5px] border border-[#D5B471]/30">
                             {tile.category}
                         </span>
                     </div>
 
-                    
                     <div className="flex flex-col gap-8">
-
-                       
+                        
                         <div className="space-y-4">
                             {/* Eyebrow */}
                             <div className="flex items-center gap-3">
@@ -93,10 +83,8 @@ const DetailsPage = ({ params }) => {
                             </p>
                         </div>
 
-                     
                         <div className="border-t border-[#7a1e2d]/10">
-
-                         
+                            
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
                                     Price
@@ -108,7 +96,7 @@ const DetailsPage = ({ params }) => {
                                 </span>
                             </div>
 
-                         
+                            
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
                                     Material
@@ -118,7 +106,7 @@ const DetailsPage = ({ params }) => {
                                 </span>
                             </div>
 
-                           
+                            
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
                                     Dimensions
@@ -128,7 +116,7 @@ const DetailsPage = ({ params }) => {
                                 </span>
                             </div>
 
-                           
+                            
                             <div className="flex justify-between items-center py-3.5 border-b border-[#7a1e2d]/10">
                                 <span className="text-[10.5px] font-semibold tracking-[0.22em] uppercase text-[#7a1e2d]/40">
                                     Category
