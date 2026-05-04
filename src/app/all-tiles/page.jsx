@@ -21,7 +21,7 @@ const AllTilesPage = () => {
             try {
                 const res = await fetch('http://localhost:3000/data.json');
                 const data = await res.json();
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                
                 setTiles(data);
             } catch (error) {
                 console.error("Error fetching tiles:", error);
