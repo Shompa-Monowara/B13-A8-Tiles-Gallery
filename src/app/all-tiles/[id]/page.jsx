@@ -19,7 +19,7 @@ const DetailsPage = ({ params }) => {
                 const tiles = await res.json();
                 const foundTile = tiles.find(t => String(t.id) === String(id));
                 setTile(foundTile);
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulating delay for loading
+                await new Promise(resolve => setTimeout(resolve, 1000)); 
             } catch (error) {
                 console.error("Error fetching tile details:", error);
             } finally {

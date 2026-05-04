@@ -6,6 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 import { HiOutlineSearch } from "react-icons/hi";
 
+
 const AllTilesPage = () => {
     const [tiles, setTiles] = useState([]);
     const [search, setSearch] = useState("");
