@@ -1,10 +1,11 @@
 "use client";
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
 import { useSearchParams } from "next/navigation";
 import { HiOutlineSearch } from "react-icons/hi";
 
-const AllTilesPage = () => {
+const AllTilesContent = () => {
     const [tiles, setTiles] = useState([]);
     const [search, setSearch] = useState("");
 
@@ -29,9 +30,7 @@ const AllTilesPage = () => {
     });
 
     return (
-        <div
-            className="max-w-7xl mx-auto px-4 md:px-8 mt-40 mb-20 font-sans"
-        >
+        <div className="max-w-7xl mx-auto px-4 md:px-8 mt-40 mb-20 font-sans">
             <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
                     <span className="block w-6 h-px bg-[#D5B471]" />
@@ -39,9 +38,7 @@ const AllTilesPage = () => {
                         {category ? category : "Complete Collection"}
                     </p>
                 </div>
-                <h1
-                    className="text-[42px] md:text-[52px] font-light tracking-[0.03em] leading-[1.1] text-[#2a0e17] font-serif"
-                >
+                <h1 className="text-[42px] md:text-[52px] font-light tracking-[0.03em] leading-[1.1] text-[#2a0e17] font-serif">
                     All <em className="not-italic text-[#7a1e2d]">Tiles</em>
                 </h1>
                 <div className="w-full h-px bg-gradient-to-r from-[#D5B471]/50 via-[#7a1e2d]/10 to-transparent mt-8" />
@@ -102,5 +99,9 @@ const AllTilesPage = () => {
         </div>
     );
 };
+
+const AllTilesPage = dynamic(() => Promise.resolve(AllTilesContent), {
+    ssr: false,
+});
 
 export default AllTilesPage;
