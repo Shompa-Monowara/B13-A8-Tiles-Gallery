@@ -12,12 +12,28 @@ const AllTilesPage = () => {
     const category = searchParams.get("category");
 
     useEffect(() => {
-        const fetchTiles = async () => {
-            const res = await fetch('/data.json');
-            const data = await res.json();
-            setTiles(data);
+        const loadTiles = async () => {
+            // Mentor-style fetching logic
+            const fetchTilesData = async () => {
+                try {
+                    const res = await fetch('/data.json');
+                    const data = await res.json();
+                    return { data, error: null };
+                } catch (error) {
+                    return { data: null, error };
+                }
+            };
+
+            const { data, error } = await fetchTilesData();
+
+            if (data) {
+                setTiles(data);
+            } else if (error) {
+                console.error("Error fetching tiles:", error);
+            }
         };
-        fetchTiles();
+
+        loadTiles();
     }, []);
 
     const filteredTiles = tiles.filter(tile => {
