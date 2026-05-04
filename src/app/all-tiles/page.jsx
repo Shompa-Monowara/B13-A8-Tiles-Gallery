@@ -78,7 +78,7 @@ const AllTilesPage = () => {
                     <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#7a1e2d]/40 mb-8">
                         {filteredTiles.length} {filteredTiles.length === 1 ? "Result" : "Results"}
                         {category && (
-                            <span className="text-[#D5B471] ml-2">— {category}</span>
+                            <span className="text-[#D5B471] ml-2"> {category}</span>
                         )}
                     </p>
 

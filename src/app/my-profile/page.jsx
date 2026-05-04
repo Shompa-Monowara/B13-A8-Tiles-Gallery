@@ -1,7 +1,7 @@
 "use client";
 
 import { UpdateUserModal } from "@/components/UpdateCardModal";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/app/lib/auth-client";
 import { Avatar } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";

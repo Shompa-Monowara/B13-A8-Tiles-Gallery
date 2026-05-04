@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/app/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
