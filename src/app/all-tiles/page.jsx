@@ -13,7 +13,7 @@ const AllTilesPage = () => {
 
     useEffect(() => {
         const fetchTiles = async () => {
-            const res = await fetch('/data.json');
+            const res = await fetch('http://localhost:3000');
             const data = await res.json();
             setTiles(data);
         };
