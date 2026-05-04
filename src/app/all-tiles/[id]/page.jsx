@@ -15,7 +15,7 @@ const DetailsPage = ({ params }) => {
             if (!id) return;
             setLoading(true);
             try {
-                const res = await fetch('http://localhost:3000');
+                const res = await fetch('http://localhost:3000/data.json');
                 const tiles = await res.json();
                 const foundTile = tiles.find(t => String(t.id) === String(id));
                 setTile(foundTile);
