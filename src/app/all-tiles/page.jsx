@@ -14,7 +14,7 @@ const AllTilesContent = () => {
 
     useEffect(() => {
         const fetchTiles = async () => {
-            const res = await fetch('/data.json');
+            const res = await fetch('https://b13-a8-tiles-gallery.vercel.app/');
             const data = await res.json();
             setTiles(data);
         };
